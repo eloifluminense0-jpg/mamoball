@@ -16,9 +16,10 @@ jobs:
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
         echo "THEOS=/home/runner/theos" >> $GITHUB_ENV
 
-    - name: Baixar SDK do iOS
+    - name: Configurar SDK do iOS
       run: |
-        git clone https://github.com/theos/sdks.git /home/runner/theos/sdks
+        rm -rf /home/runner/theos/sdks
+        git clone --depth=1 https://github.com/theos/sdks.git /home/runner/theos/sdks
         
     - name: Compilar o Projeto
       run: |
