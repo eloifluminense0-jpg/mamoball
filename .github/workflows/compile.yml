@@ -26,10 +26,10 @@ jobs:
         export THEOS=/home/runner/theos
         make FINALPACKAGE=1
 
-    - name: Mover a dylib para download
+- name: Mover a dylib para download
       run: |
         mkdir -p output
-        find .theos/obj/ -name "*.dylib" -exec cp {} output/ \;
+        cp .theos/obj/FlorkMacro.dylib output/ || cp FlorkMacro.dylib output/ || find . -name "*.dylib" -exec cp {} output/ \;
 
     - name: Disponibilizar arquivo para Baixar
       uses: actions/upload-artifact@v4
