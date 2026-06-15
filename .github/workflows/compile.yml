@@ -29,7 +29,8 @@ jobs:
     - name: Mover a dylib para download
       run: |
         mkdir -p output
-        cp .theos/obj/FlorkMacro.dylib output/ || cp FlorkMacro.dylib output/ || find . -name "*.dylib" -exec cp {} output/ \;
+        find . -name "*.dylib" -exec cp {} output/ \;
+        ls -la output/
 
     - name: Disponibilizar arquivo para Baixar
       uses: actions/upload-artifact@v4
