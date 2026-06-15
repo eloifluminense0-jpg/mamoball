@@ -11,8 +11,7 @@ jobs:
       - name: Instalar Theos
         run: |
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
-          echo "THEOS=/home/runner/theos" >> $GITHUB_ENV
-      - name: Baixar SDKs
+      - name: Instalar SDKs manualmente
         run: |
           mkdir -p /home/runner/theos/sdks
           curl -LO https://github.com/theos/sdks/archive/master.tar.gz
