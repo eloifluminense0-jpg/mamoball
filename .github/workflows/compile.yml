@@ -26,14 +26,18 @@ jobs:
         export THEOS=/home/runner/theos
         make FINALPACKAGE=1
 
-    - name: Mover a dylib para download
+    - name: Procurar e Mover Arquivo
       run: |
         mkdir -p output
-        find . -name "*.dylib" -exec cp {} output/ \;
-        ls -la output/
+        echo "--- Listando arquivos do projeto para achar a dylib ---"
+        find . -type f -name "*.dylib" || true
+        echo "--- Fim da busca ---"
+        # Copia de qualquer lugar que encontrar
+        find . -name "*.dylib" -exec cp {} output/ \; || true
 
     - name: Disponibilizar arquivo para Baixar
       uses: actions/upload-artifact@v4
       with:
         name: FlorkMacro-Dylib
         path: output/
+        if-no-files-found: warn
