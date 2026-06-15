@@ -1,0 +1,23 @@
+name: Compilar Tweak iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar Theos
+        run: |
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+          echo "THEOS=/home/runner/theos" >> $GITHUB_ENV
+      - name: Compilar
+        run: |
+          export THEOS=/home/runner/theos
+          make package FINALPACKAGE=1
+      - name: Salvar arquivo
+        uses: actions/upload-artifact@v4
+        with:
+          name: Macro-Final
+          path: packages/*.deb
