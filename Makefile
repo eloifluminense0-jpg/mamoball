@@ -1,12 +1,11 @@
-TARGET := iphone:clang:latest:14.0
-ARCHS := arm64
+ARCHS = arm64 arm64e
+TARGET = iphone:clang:14.5:14.5
 
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = FlorkMacro
+TWEAK_NAME = MeuMacro
 
-FlorkMacro_FILES = Tweak.x
-FlorkMacro_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
-FlorkMacro_LIBRARIES = substrate
+MeuMacro_FILES = Tweak.x
+MeuMacro_CFLAGS = -fobjc-arc
 
-include $(THEOS)/makefiles/instance/library.mk
+include $(THEOS_MAKE_PATH)/tweak.mk
