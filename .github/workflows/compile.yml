@@ -1,0 +1,38 @@
+name: Compilar Tweak iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+
+    - name: Configurar o ambiente Theos
+      run: |
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+        echo "THEOS=/home/runner/theos" >> $GITHUB_ENV
+
+    - name: Configurar SDK do iOS
+      run: |
+        rm -rf /home/runner/theos/sdks
+        git clone --depth=1 https://github.com/theos/sdks.git /home/runner/theos/sdks
+        
+    - name: Compilar o Projeto
+      run: |
+        export THEOS=/home/runner/theos
+        make FINALPACKAGE=1
+
+    - name: Mover a dylib para download
+      run: |
+        mkdir -p output
+        cp .theos/obj/FlorkMacro.dylib output/ || cp FlorkMacro.dylib output/ || find . -name "*.dylib" -exec cp {} output/ \;
+
+    - name: Disponibilizar arquivo para Baixar
+      uses: actions/upload-artifact@v4
+      with:
+        name: FlorkMacro-Dylib
+        path: output/
