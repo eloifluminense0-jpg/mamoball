@@ -24,7 +24,7 @@ jobs:
     - name: Compilar o Projeto
       run: |
         export THEOS=/home/runner/theos
-       make FINALPACKAGE=1
+        make FINALPACKAGE=1
 
     - name: Mover a dylib para download
       run: |
