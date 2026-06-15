@@ -1,0 +1,8 @@
+Package: com.marcxll.florkmacro
+Name: FlorkMacro
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Macro para MamoBall
+Author: Flork
+Maintainer: Marcelo
