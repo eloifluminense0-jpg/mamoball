@@ -9,4 +9,4 @@ FlorkMacro_FILES = Tweak.x
 FlorkMacro_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
 FlorkMacro_LIBRARIES = substrate
 
-include $(THEOS)/makefiles/tweak.mk
+include $(THEOS)/makefiles/instance/library.mk
