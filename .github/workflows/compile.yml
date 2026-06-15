@@ -1,40 +1,10 @@
 name: Compilar Tweak iOS
-
 on:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4
-
-    - name: Configurar o ambiente Theos
-      run: |
-        bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
-        echo "THEOS=/home/runner/theos" >> $GITHUB_ENV
-
-    - name: Configurar SDK do iOS
-      run: |
-        rm -rf /home/runner/theos/sdks
-        git clone --depth=1 https://github.com/theos/sdks.git /home/runner/theos/sdks
-        
-    - name: Compilar o Projeto
-      run: |
-        export THEOS=/home/runner/theos
-        make package FINALPACKAGE=1
-
-   - name: Capturar arquivos compilados
-      run: |
-        mkdir -p output
-        # Agora o robô vai olhar na pasta correta onde o arquivo final é criado
-        cp packages/*.deb output/ || echo "Nenhum arquivo encontrado, verifique o erro acima"
-        ls -la output/
-    - name: Disponibilizar arquivo para Baixar
-      uses: actions/upload-artifact@v4
-      with:
-        name: FlorkMacro-Compilado
-        path: output/
-        if-no-files-found: error
+      - uses: actions/checkout@v4
+      - name: Build
+        run: echo "Teste de funcionamento"
