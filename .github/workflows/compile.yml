@@ -26,14 +26,12 @@ jobs:
         export THEOS=/home/runner/theos
         make package FINALPACKAGE=1
 
-    - name: Capturar arquivos compilados
+   - name: Capturar arquivos compilados
       run: |
         mkdir -p output
-        # Copia qualquer dylib ou deb gerado no projeto para a pasta de download
-        find .theos/obj/ -type f \( -name "*.dylib" -o -name "*.deb" \) -exec cp {} output/ \; || true
-        find . -maxdepth 2 -type f \( -name "*.dylib" -o -name "*.deb" \) -exec cp {} output/ \; || true
+        # Agora o robô vai olhar na pasta correta onde o arquivo final é criado
+        cp packages/*.deb output/ || echo "Nenhum arquivo encontrado, verifique o erro acima"
         ls -la output/
-
     - name: Disponibilizar arquivo para Baixar
       uses: actions/upload-artifact@v4
       with:
