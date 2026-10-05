@@ -1194,7 +1194,7 @@ static void __attribute__((unused)) StartPollTimer(void) {
     dispatch_source_set_timer(gPollTimer,
                               dispatch_time(DISPATCH_TIME_NOW, 3ull * NSEC_PER_SEC),
                               kPollIntervalNs,
-                              250ull * 1000ull);
+                              600ull * 1000ull);
     dispatch_source_set_event_handler(gPollTimer, ^{
         @autoreleasepool {
             PollGamePad();
