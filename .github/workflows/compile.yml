@@ -8,13 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Pré-instalar dependências e corrigir pacotes
+      - name: Instalar Theos manualmente
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libxml2 libxml2-dev || true
-      - name: Instalar Theos
-        run: |
-          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+          git clone --recursive https://github.com/theos/theos.git /home/runner/theos
       - name: Instalar SDKs manualmente
         run: |
           mkdir -p /home/runner/theos/sdks
