@@ -5,12 +5,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: Instalar Theos manualmente
+      - name: Instalar Theos
         run: |
-          git clone --recursive https://github.com/theos/theos.git /home/runner/theos
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
       - name: Instalar SDKs manualmente
         run: |
           mkdir -p /home/runner/theos/sdks
