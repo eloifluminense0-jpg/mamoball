@@ -661,7 +661,7 @@ static void FinishMacroDb(void) {
     if (gMacroQueuedCount > 0) {
         gMacroQueuedCount--;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-            StartMacroDb();
+            StartMacroPentaClickPowerKick();
         });
     }
 }
@@ -809,7 +809,6 @@ static void StartMacroDb(void) {
         });
     });
 }
-
 static bool IsMacroTouchEventStale(UIEvent *event) {
     if (!event) {
         return false;
@@ -836,7 +835,7 @@ static void StartMacroDbFromLiveButtonEvent(UIEvent *event) {
     }
 
     gMacroQueuedCount = 0;
-    StartMacroDb();
+   StartMacroPentaClickPowerKick();
 }
 
 static void PollGamePad(void) {
