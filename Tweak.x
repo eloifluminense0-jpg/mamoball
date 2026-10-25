@@ -31,8 +31,6 @@ typedef int (*ObscuredFloatEncryptMethod_t)(float value, int key, const MethodIn
 typedef void (*ObscuredFloatSetEncryptedMethod_t)(void *self, int encrypted, int key, const MethodInfo *method);
 
 void StartMacroPentaClickPowerKick(void);
-
-typedef struct {
 typedef struct {
     float x;
     float y;
